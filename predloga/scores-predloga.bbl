@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{0}
+\begin{thebibliography}{4}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -36,5 +36,56 @@
 \providecommand\bibinfo[2]{#2}
 \providecommand\natexlab[1]{#1}
 \providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[Clark et~al\mbox{.}(2020)]%
+        {clark2020electra}
+\bibfield{author}{\bibinfo{person}{Kevin Clark}, \bibinfo{person}{Minh-Thang
+  Luong}, \bibinfo{person}{Quoc~V Le}, {and} \bibinfo{person}{Christopher~D
+  Manning}.} \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{Electra: Pre-training text encoders as
+  discriminators rather than generators}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2003.10555}}
+  (\bibinfo{year}{2020}).
+\newblock
+
+
+\bibitem[Devlin et~al\mbox{.}(2018)]%
+        {devlin2018bert}
+\bibfield{author}{\bibinfo{person}{Jacob Devlin}, \bibinfo{person}{Ming-Wei
+  Chang}, \bibinfo{person}{Kenton Lee}, {and} \bibinfo{person}{Kristina
+  Toutanova}.} \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{Bert: Pre-training of deep bidirectional
+  transformers for language understanding}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:1810.04805}}
+  (\bibinfo{year}{2018}).
+\newblock
+
+
+\bibitem[Haynes et~al\mbox{.}(2021)]%
+        {HAYNES2021127}
+\bibfield{author}{\bibinfo{person}{Katherine Haynes}, \bibinfo{person}{Hossein
+  Shirazi}, {and} \bibinfo{person}{Indrakshi Ray}.}
+  \bibinfo{year}{2021}\natexlab{}.
+\newblock \showarticletitle{Lightweight URL-based phishing detection using
+  natural language processing transformers for mobile devices}.
+\newblock \bibinfo{journal}{\emph{Procedia Computer Science}}
+  \bibinfo{volume}{191} (\bibinfo{year}{2021}), \bibinfo{pages}{127--134}.
+\newblock
+\showISSN{1877-0509}
+\urldef\tempurl%
+\url{https://doi.org/10.1016/j.procs.2021.07.040}
+\showDOI{\tempurl}
+
+
+\bibitem[Stone(2007)]%
+        {stone2007ebids}
+\bibfield{author}{\bibinfo{person}{Allen~Brian Stone}.}
+  \bibinfo{year}{2007}\natexlab{}.
+\newblock \emph{\bibinfo{title}{EBIDS-SENLP: A system to detect social
+  engineering email using natural language processing}}.
+\newblock \bibinfo{thesistype}{Ph.\,D. Dissertation}.
+  \bibinfo{school}{University of Maryland, Baltimore County}.
+\newblock
+
 
 \end{thebibliography}
