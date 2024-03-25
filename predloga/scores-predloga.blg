@@ -25,45 +25,47 @@ Warning--no number and no volume in clark2020electra
 Warning--page numbers missing in both pages and numpages fields in clark2020electra
 Warning--no number and no volume in devlin2018bert
 Warning--page numbers missing in both pages and numpages fields in devlin2018bert
-You've used 4 entries,
+Warning--empty publisher in 682375
+Warning--empty address in 682375
+You've used 7 entries,
             5981 wiz_defined-function locations,
-            1506 strings with 18928 characters,
-and the built_in function-call counts, 4273 in all, are:
-= -- 630
-> -- 126
+            1526 strings with 19486 characters,
+and the built_in function-call counts, 7379 in all, are:
+= -- 1030
+> -- 207
 < -- 0
-+ -- 40
-- -- 50
-* -- 285
-:= -- 410
-add.period$ -- 21
-call.type$ -- 4
-change.case$ -- 28
-chr.to.int$ -- 4
-cite$ -- 8
-duplicate$ -- 337
-empty$ -- 241
-format.name$ -- 52
-if$ -- 1070
++ -- 64
+- -- 79
+* -- 486
+:= -- 703
+add.period$ -- 36
+call.type$ -- 7
+change.case$ -- 48
+chr.to.int$ -- 7
+cite$ -- 13
+duplicate$ -- 627
+empty$ -- 447
+format.name$ -- 85
+if$ -- 1834
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 12
-newline$ -- 76
-num.names$ -- 28
-pop$ -- 131
+missing$ -- 21
+newline$ -- 103
+num.names$ -- 49
+pop$ -- 241
 preamble$ -- 1
-purify$ -- 60
+purify$ -- 103
 quote$ -- 0
-skip$ -- 112
+skip$ -- 217
 stack$ -- 0
-substring$ -- 282
-swap$ -- 25
+substring$ -- 523
+swap$ -- 50
 text.length$ -- 19
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 78
-warning$ -- 4
-while$ -- 19
+type$ -- 154
+warning$ -- 6
+while$ -- 39
 width$ -- 0
-write$ -- 117
-(There were 12 warnings)
+write$ -- 177
+(There were 14 warnings)

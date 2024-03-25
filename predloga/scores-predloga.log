@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.3.7)  24 MAR 2024 16:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.3.7)  25 MAR 2024 19:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1037,9 +1037,11 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
 (Font)              scaled to size 10.95pt on input line 188.
 
 
-Package natbib Warning: Citation `stone2007ebids' on page 1 undefined on input 
-line 199.
+Package natbib Warning: Citation `rekouche2011early' on page 1 undefined on inp
+ut line 197.
 
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
+(Font)              scaled to size 9.0pt on input line 201.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/it' will be
 (Font)              scaled to size 10.95pt on input line 203.
 LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 20
@@ -1053,8 +1055,17 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `zi4' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
-(Font)              scaled to size 9.0pt on input line 207.
+
+[1.1{C:/Users/yanbe/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/
+yanbe/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/libertine/lbtn_25tcsq.enc}{
+C:/Users/yanbe/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/libertine/lbtn_76g
+pa5.enc}
+
+{C:/Users/yanbe/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/libertine/lbtn_nh
+77jq.enc}{C:/Users/yanbe/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/libertin
+e/lbtn_7grukw.enc}{C:/Users/yanbe/AppData/Local/Programs/MiKTeX/fonts/enc/dvips
+/libertine/lbtn_ki75ao.enc}{C:/Users/yanbe/AppData/Local/Programs/MiKTeX/fonts/
+enc/dvips/inconsolata/i4-t1-4.enc}]
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
 (Font)              scaled to size 9.0pt on input line 215.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
@@ -1065,24 +1076,13 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
 (Font)              scaled to size 7.3pt on input line 217.
 
 
-Package natbib Warning: Citation `Lamport:LaTeX' on page 1 undefined on input l
+Package natbib Warning: Citation `Lamport:LaTeX' on page 2 undefined on input l
 ine 217.
 
-[1.1{C:/Users/yanbe/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/
-yanbe/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/libertine/lbtn_25tcsq.enc}{
-C:/Users/yanbe/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/libertine/lbtn_76g
-pa5.enc}
-
-{C:/Users/yanbe/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/libertine/lbtn_nh
-77jq.enc}{C:/Users/yanbe/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/libertin
-e/lbtn_ki75ao.enc}{C:/Users/yanbe/AppData/Local/Programs/MiKTeX/fonts/enc/dvips
-/inconsolata/i4-t1-4.enc}{C:/Users/yanbe/AppData/Local/Programs/MiKTeX/fonts/en
-c/dvips/libertine/lbtn_7grukw.enc}]
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
 (Font)              scaled to size 9.0pt on input line 227.
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/it' will be
 (Font)              scaled to size 9.0pt on input line 227.
-
 
 Package natbib Warning: Citation `Lamport:LaTeX' on page 2 undefined on input l
 ine 232.
@@ -1123,15 +1123,23 @@ on input line 311.
 Package natbib Warning: Citation `Lamport:LaTeX' on page 2 undefined on input l
 ine 322.
 
-<circles.pdf, id=86, 345.4411pt x 239.20256pt>
+
+Underfull \vbox (badness 1675) has occurred while \output is active []
+
+LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
+(Font)              scaled to size 7.0pt on input line 384.
+ [2.2{C:/Users/yanbe/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/libertine/lb
+tn_oexx6f.enc}]
+<circles.pdf, id=114, 345.4411pt x 239.20256pt>
 File: circles.pdf Graphic file (type pdf)
 <use circles.pdf>
 Package pdftex.def Info: circles.pdf  used on input line 390.
 (pdftex.def)             Requested size: 172.72012pt x 119.60098pt.
 
+
 Class acmart Warning: A possible image without description on input line 393.
 
-<star.png, id=87, 328.46715pt x 336.7782pt>
+<star.png, id=115, 328.46715pt x 336.7782pt>
 File: star.png Graphic file (type png)
 <use star.png>
 Package pdftex.def Info: star.png  used on input line 397.
@@ -1139,7 +1147,7 @@ Package pdftex.def Info: star.png  used on input line 397.
 
 Class acmart Warning: A possible image without description on input line 400.
 
-<spin.png, id=90, 585.387pt x 243.91125pt>
+<spin.png, id=118, 585.387pt x 243.91125pt>
 File: spin.png Graphic file (type png)
 <use spin.png>
 Package pdftex.def Info: spin.png  used on input line 407.
@@ -1147,26 +1155,26 @@ Package pdftex.def Info: spin.png  used on input line 407.
 
 Class acmart Warning: A possible image without description on input line 410.
 
-LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 7.0pt on input line 418.
-[2.2{C:/Users/yanbe/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/libertine/lbt
-n_oexx6f.enc}]
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
 (Font)              scaled to size 6.0pt on input line 446.
- Processing 'acks' comment.
+Processing 'acks' comment.
 \openout3 = `comment.cut'.
 
-
-Comment 'acks' writing to comment.cut. Straight input of comment.cut.
-(comment.cut) (scores-predloga.bbl
+ Comment 'acks' writing to comment.cut.
+Straight input of comment.cut. (comment.cut) (scores-predloga.bbl [3.3 <./circl
+es.pdf> <./star.png>]
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
 (Font)              scaled to size 7.0pt on input line 47.
- [3.3 <./circles.pdf> <./star.png>])
+LaTeX Info: Redefining \tempurl on input line 91.
+)
 
 Package natbib Warning: There were undefined citations.
 
 
 Class acmart Warning: Some images may lack descriptions.
+
+
+Overfull \vbox (1.327pt too high) has occurred while \output is active []
 
 
 (C:\Users\yanbe\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\se-pdfdoc.d
@@ -1189,13 +1197,13 @@ Package rerunfilecheck Info: File `scores-predloga.out' has not changed.
 (rerunfilecheck)             Checksum: 62AAF504988F681CB637532943FB2C62;1664.
  ) 
 Here is how much of TeX's memory you used:
- 23187 strings out of 474457
- 381581 string characters out of 5742755
+ 23207 strings out of 474457
+ 382011 string characters out of 5742755
  1957190 words of memory out of 5000000
- 44495 multiletter control sequences out of 15000+600000
- 733894 words of font info for 376 fonts, out of 8000000 for 9000
+ 44506 multiletter control sequences out of 15000+600000
+ 734538 words of font info for 380 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 90i,18n,131p,1399b,713s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,18n,131p,1399b,657s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/yanbe/AppData/Local/Programs/MiKTeX/fonts/type1/public/inconsolata/
 Inconsolata-zi4r.pfb><C:/Users/yanbe/AppData/Local/Programs/MiKTeX/fonts/type1/
 public/newtx/LibertineMathMI.pfb><C:/Users/yanbe/AppData/Local/Programs/MiKTeX/
@@ -1213,9 +1221,9 @@ e/AppData/Local/Programs/MiKTeX/fonts/type1/public/libertine/LinLibertineTI.pfb
 fb><C:/Users/yanbe/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txmia
 X.pfb><C:/Users/yanbe/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/tx
 sys.pfb>
-Output written on scores-predloga.pdf (4 pages, 608695 bytes).
+Output written on scores-predloga.pdf (4 pages, 613917 bytes).
 PDF statistics:
- 242 PDF objects out of 1000 (max. 8388607)
- 56 named destinations out of 1000 (max. 500000)
+ 250 PDF objects out of 1000 (max. 8388607)
+ 59 named destinations out of 1000 (max. 500000)
  92808 words of extra memory for PDF output out of 106986 (max. 10000000)
 

@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{4}
+\begin{thebibliography}{7}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -75,6 +75,45 @@
 \urldef\tempurl%
 \url{https://doi.org/10.1016/j.procs.2021.07.040}
 \showDOI{\tempurl}
+
+
+\bibitem[Jimenez(1998)]%
+        {682375}
+\bibfield{author}{\bibinfo{person}{D. Jimenez}.}
+  \bibinfo{year}{1998}\natexlab{}.
+\newblock \showarticletitle{Dynamically weighted ensemble neural networks for
+  classification}. In \bibinfo{booktitle}{\emph{1998 IEEE International Joint
+  Conference on Neural Networks Proceedings. IEEE World Congress on
+  Computational Intelligence (Cat. No.98CH36227)}}, Vol.~\bibinfo{volume}{1}.
+  \bibinfo{pages}{753--756 vol.1}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1109/IJCNN.1998.682375}
+\showDOI{\tempurl}
+
+
+\bibitem[Mittal et~al\mbox{.}(2022)]%
+        {mittal2022phishing}
+\bibfield{author}{\bibinfo{person}{Apurv Mittal}, \bibinfo{person}{Dr~Daniel
+  Engels}, \bibinfo{person}{Harsha Kommanapalli}, \bibinfo{person}{Ravi
+  Sivaraman}, {and} \bibinfo{person}{Taifur Chowdhury}.}
+  \bibinfo{year}{2022}\natexlab{}.
+\newblock \showarticletitle{Phishing detection using natural language
+  processing and machine learning}.
+\newblock \bibinfo{journal}{\emph{SMU Data Science Review}}
+  \bibinfo{volume}{6}, \bibinfo{number}{2} (\bibinfo{year}{2022}),
+  \bibinfo{pages}{14}.
+\newblock
+
+
+\bibitem[Rekouche(2011)]%
+        {rekouche2011early}
+\bibfield{author}{\bibinfo{person}{Koceilah Rekouche}.}
+  \bibinfo{year}{2011}\natexlab{}.
+\newblock \bibinfo{title}{Early Phishing}.
+\newblock
+\newblock
+\showeprint[arxiv]{1106.4692}~[cs.CR]
 
 
 \bibitem[Stone(2007)]%
