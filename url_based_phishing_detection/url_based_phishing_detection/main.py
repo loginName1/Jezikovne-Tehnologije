@@ -1,19 +1,11 @@
 import numpy as np
 import pandas as pd
-import torch
-import torch.nn as nn
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report
-import transformers
-from transformers import AutoModel, BertTokenizerFast
-from torch.utils.data import TensorDataset, DataLoader, RandomSampler, SequentialSampler
+from sklearn.preprocessing import LabelEncoder
 
 import requests
 from bs4 import BeautifulSoup
 import csv
-import gzip
-import json
-import matplotlib
 
 
 #### URL SCRAPING (PHISHTANK DISABLED NEW USER REGISTRATION)
@@ -29,7 +21,7 @@ class PhishTankUrlScraper(object):
         headers = {
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
             'Accept-Encoding': 'gzip, deflate, br',
-            "Accept-Language": "en-US,en;q=0.5",
+            'Accept-Language': "en-US,en;q=0.5",
             'Alt-Used': 'phishtank.com',
             'Connection': 'keep-alive',
             'Cookie': 'cf_clearance=FIfX71hQCUrYgabgakWuq5bb8l7d5HvBw1hMqXoJBE4-1713180935-1.0.1.1-LohN0sMyaApvxdIUp_h2BLXabA_cdMxShm8qHgPcLpecH694oYZ4cMwxDaDVwasSV2f4tZqzV2d8LVUbsOMdlw; PHPSESSID=tpll9eildlocdp599fkatd3e45igurf7; __cf_bm=uhfRPhh0vR_5Qv967Mfo5eQS0kCgvCPQ.h2TAj3_z1k-1713180941-1.0.1.1-tlGJiTyNnSt2OmGa8vmJ7de3apL1x_kw.0M5kXnWZApZZVhTIaLHGE7qHRbVDl_sLeLCCylOEIl2Tf7FE9811A',
@@ -144,6 +136,71 @@ def write_urls_to_csv(urls, csv_file):
             writer.writerow([0, url])
 
 ############## CREATING THE FULL DATASET ##############
+
+df = pd.read_csv("corrected_dataset.csv", sep=";", encoding='utf-8', header=None, escapechar='\\')
+
+# Split the dataset into training and testing sets
+train_df, test_df = train_test_split(df, test_size=0.2, random_state=42)
+
+test_bert_df = pd.DataFrame({
+    'id': range(len(test_df)),
+    'text': test_df[1].replace(r'\n', ' ', regex=True)
+})
+
+bert_df = pd.DataFrame({
+    'id': range(len(train_df)),
+    'label': train_df[0],
+    'alpha': ['a']*train_df.shape[0],
+    'text': train_df[1].replace(r'\n', ' ', regex=True)
+})
+# Further split the training set into training and development sets
+train_bert_df, dev_bert_df = train_test_split(bert_df, test_size=0.25, random_state=42)  # 0.25 x 0.8 = 0.2
+
+
+train_bert_df.to_csv('../../../google-bert/data/train.tsv', sep='\t', index=False, header=False)
+dev_bert_df.to_csv('../../../google-bert/data/dev.tsv', sep='\t', index=False, header=False)
+test_bert_df.to_csv('../../../google-bert/data/test.tsv', sep='\t', index=False, header=False)
+# Save the training, development, and testing sets to new CSV files
+# train_df.to_csv('train_dataset.csv', index=False, sep=';', encoding='utf-8', header=False, quoting=csv.QUOTE_NONE, escapechar='\\')
+# dev_df.to_csv('dev_dataset.csv', index=False, sep=';', encoding='utf-8', header=False, quoting=csv.QUOTE_NONE, escapechar='\\')
+# test_df.to_csv('test_dataset.tsv', index=False, sep='\t', encoding='utf-8', header=False, quoting=csv.QUOTE_NONE, escapechar='\\')
+
+# def read_csv_to_list(file_name, delimiter=';'):
+#     data = []
+#     with open(file_name, 'r', encoding='utf-8') as file:
+#         reader = csv.reader(file, delimiter=delimiter)
+#         for idx, row in enumerate(reader):
+#             if len(row) != 2:
+#                 print(f"Skipping line {idx + 1} in {file_name}: expected 2 fields, saw {len(row)}")
+#                 continue
+#             data.append(row)
+#     return data
+#
+# # Read the first CSV file
+# data1 = read_csv_to_list('phishing_urls.csv')
+#
+# # Read the second CSV file
+# data2 = read_csv_to_list('cc-index-urls.csv')
+#
+# # Combine the data from the two CSV files
+# merged_data = data1 + data2
+#
+# # Convert the merged data to a pandas DataFrame
+# df = pd.DataFrame(merged_data, columns=['Label', 'Url'])
+#
+# # Add the row index and letter columns
+# df['Index'] = df.index
+# df['Letter'] = 'a'  # You can change this to any letter you want
+#
+# # Reorder the columns
+# df = df[['Index', 'Label', 'Letter', 'Url']]
+#
+# # Save the DataFrame to a new TSV file
+# df.to_csv('merged_file.csv', index=False, sep=';', quoting=csv.QUOTE_NONE, escapechar='\\')
+
+
+
+
 # with open('phishing_urls.csv', 'r', encoding='utf-8') as file1:
 #     reader1 = csv.reader(file1, delimiter=';')
 #     phishingDataset = list(reader1)
@@ -165,119 +222,119 @@ def write_urls_to_csv(urls, csv_file):
 # specify GPU
 
 
-device = torch.device("cuda")
-df = pd.read_csv("dataset.csv", delimiter=';', on_bad_lines='warn', quotechar=';', encoding='utf-8', usecols=['Label', 'Url'])
-df.head()
-
-
-train_text, temp_text, train_labels, temp_labels = train_test_split(df['Url'], df['Label'],
-                                                                    random_state=2018,
-                                                                    test_size=0.3,
-                                                                    stratify=df['Label'])
-
-
-val_text, test_text, val_labels, test_labels = train_test_split(temp_text, temp_labels,
-                                                                random_state=2018,
-                                                                test_size=0.5,
-                                                                stratify=temp_labels)
-
-# BERT IMPORTS AND PREP
-bertBase = AutoModel.from_pretrained('google-bert/bert-base-uncased')
-bertBaseC = AutoModel.from_pretrained('google-bert/bert-base-cased')
-bertLarge = AutoModel.from_pretrained('google-bert/bert-large-uncased')
-
-tokenizerBase = BertTokenizerFast.from_pretrained('google-bert/bert-base-uncased')
-tokenizerBaseC = BertTokenizerFast.from_pretrained('google-bert/bert-base-cased')
-tokenizerLarge = BertTokenizerFast.from_pretrained('google-bert/bert-large-uncased')
-
-################ TOKENIZE BASE MODEL ################
-tokens_train_base = tokenizerBase.batch_encode_plus(
-    train_text.tolist(),
-    padding='max_length',
-    truncation=True
-)
-# tokenize and encode sequences in the validation set
-tokens_val_base = tokenizerBase.batch_encode_plus(
-    val_text.tolist(),
-    padding='max_length',
-    truncation=True
-)
-# tokenize and encode sequences in the test set
-tokens_test_base = tokenizerBase.batch_encode_plus(
-    test_text.tolist(),
-    padding='max_length',
-    truncation=True
-)
-
-################ TOKENIZE BASE CASED MODEL ################
-tokens_train_basec = tokenizerBaseC.batch_encode_plus(
-    train_text.tolist(),
-    padding='max_length',
-    truncation=True
-)
-# tokenize and encode sequences in the validation set
-tokens_val_basec = tokenizerBaseC.batch_encode_plus(
-    val_text.tolist(),
-    padding='max_length',
-    truncation=True
-)
-# tokenize and encode sequences in the test set
-tokens_test_basec = tokenizerBaseC.batch_encode_plus(
-    test_text.tolist(),
-    padding='max_length',
-    truncation=True
-)
-
-################ TOKENIZE LARGE MODEL ################
-tokens_train_large = tokenizerLarge.batch_encode_plus(
-    train_text.tolist(),
-    padding='max_length',
-    truncation=True
-)
-# tokenize and encode sequences in the validation set
-tokens_val_large = tokenizerLarge.batch_encode_plus(
-    val_text.tolist(),
-    padding='max_length',
-    truncation=True
-)
-# tokenize and encode sequences in the test set
-tokens_test_large = tokenizerLarge.batch_encode_plus(
-    test_text.tolist(),
-    padding='max_length',
-    truncation=True
-)
-
-
-############### BASE MODEL TEST ###############
-train_seq = torch.tensor(tokens_train_base['input_ids'])
-train_mask = torch.tensor(tokens_train_base['attention_mask'])
-train_y = torch.tensor(train_labels.tolist())
-
-val_seq = torch.tensor(tokens_val_base['input_ids'])
-val_mask = torch.tensor(tokens_val_base['attention_mask'])
-val_y = torch.tensor(val_labels.tolist())
-
-test_seq = torch.tensor(tokens_test_base['input_ids'])
-test_mask = torch.tensor(tokens_test_base['attention_mask'])
-test_y = torch.tensor(test_labels.tolist())
-
-batch_size = 32
-# wrap tensors
-train_data = TensorDataset(train_seq, train_mask, train_y)
-# sampler for sampling the data during training
-train_sampler = RandomSampler(train_data)
-# dataLoader for train set
-train_dataloader = DataLoader(train_data, sampler=train_sampler, batch_size=batch_size)
-# wrap tensors
-val_data = TensorDataset(val_seq, val_mask, val_y)
-# sampler for sampling the data during training
-val_sampler = SequentialSampler(val_data)
-# dataLoader for validation set
-val_dataloader = DataLoader(val_data, sampler = val_sampler, batch_size=batch_size)
-
-for param in bertBase.parameters():
-    param.requires_grad = False
-
+# device = torch.device("cuda")
+# df = pd.read_csv("dataset.csv", delimiter=';', on_bad_lines='warn', quotechar=';', encoding='utf-8', usecols=['Label', 'Url'])
+# df.head()
+#
+#
+# train_text, temp_text, train_labels, temp_labels = train_test_split(df['Url'], df['Label'],
+#                                                                     random_state=2018,
+#                                                                     test_size=0.3,
+#                                                                     stratify=df['Label'])
+#
+#
+# val_text, test_text, val_labels, test_labels = train_test_split(temp_text, temp_labels,
+#                                                                 random_state=2018,
+#                                                                 test_size=0.5,
+#                                                                 stratify=temp_labels)
+#
+# # BERT IMPORTS AND PREP
+# bertBase = AutoModel.from_pretrained('google-bert/bert-base-uncased')
+# bertBaseC = AutoModel.from_pretrained('google-bert/bert-base-cased')
+# bertLarge = AutoModel.from_pretrained('google-bert/bert-large-uncased')
+#
+# tokenizerBase = BertTokenizerFast.from_pretrained('google-bert/bert-base-uncased')
+# tokenizerBaseC = BertTokenizerFast.from_pretrained('google-bert/bert-base-cased')
+# tokenizerLarge = BertTokenizerFast.from_pretrained('google-bert/bert-large-uncased')
+#
+# ################ TOKENIZE BASE MODEL ################
+# tokens_train_base = tokenizerBase.batch_encode_plus(
+#     train_text.tolist(),
+#     padding='max_length',
+#     truncation=True
+# )
+# # tokenize and encode sequences in the validation set
+# tokens_val_base = tokenizerBase.batch_encode_plus(
+#     val_text.tolist(),
+#     padding='max_length',
+#     truncation=True
+# )
+# # tokenize and encode sequences in the test set
+# tokens_test_base = tokenizerBase.batch_encode_plus(
+#     test_text.tolist(),
+#     padding='max_length',
+#     truncation=True
+# )
+#
+# ################ TOKENIZE BASE CASED MODEL ################
+# tokens_train_basec = tokenizerBaseC.batch_encode_plus(
+#     train_text.tolist(),
+#     padding='max_length',
+#     truncation=True
+# )
+# # tokenize and encode sequences in the validation set
+# tokens_val_basec = tokenizerBaseC.batch_encode_plus(
+#     val_text.tolist(),
+#     padding='max_length',
+#     truncation=True
+# )
+# # tokenize and encode sequences in the test set
+# tokens_test_basec = tokenizerBaseC.batch_encode_plus(
+#     test_text.tolist(),
+#     padding='max_length',
+#     truncation=True
+# )
+#
+# ################ TOKENIZE LARGE MODEL ################
+# tokens_train_large = tokenizerLarge.batch_encode_plus(
+#     train_text.tolist(),
+#     padding='max_length',
+#     truncation=True
+# )
+# # tokenize and encode sequences in the validation set
+# tokens_val_large = tokenizerLarge.batch_encode_plus(
+#     val_text.tolist(),
+#     padding='max_length',
+#     truncation=True
+# )
+# # tokenize and encode sequences in the test set
+# tokens_test_large = tokenizerLarge.batch_encode_plus(
+#     test_text.tolist(),
+#     padding='max_length',
+#     truncation=True
+# )
+#
+#
+# ############### BASE MODEL TEST ###############
+# train_seq = torch.tensor(tokens_train_base['input_ids'])
+# train_mask = torch.tensor(tokens_train_base['attention_mask'])
+# train_y = torch.tensor(train_labels.tolist())
+#
+# val_seq = torch.tensor(tokens_val_base['input_ids'])
+# val_mask = torch.tensor(tokens_val_base['attention_mask'])
+# val_y = torch.tensor(val_labels.tolist())
+#
+# test_seq = torch.tensor(tokens_test_base['input_ids'])
+# test_mask = torch.tensor(tokens_test_base['attention_mask'])
+# test_y = torch.tensor(test_labels.tolist())
+#
+# batch_size = 32
+# # wrap tensors
+# train_data = TensorDataset(train_seq, train_mask, train_y)
+# # sampler for sampling the data during training
+# train_sampler = RandomSampler(train_data)
+# # dataLoader for train set
+# train_dataloader = DataLoader(train_data, sampler=train_sampler, batch_size=batch_size)
+# # wrap tensors
+# val_data = TensorDataset(val_seq, val_mask, val_y)
+# # sampler for sampling the data during training
+# val_sampler = SequentialSampler(val_data)
+# # dataLoader for validation set
+# val_dataloader = DataLoader(val_data, sampler = val_sampler, batch_size=batch_size)
+#
+# for param in bertBase.parameters():
+#     param.requires_grad = False
+#
 
 
 #if __name__ == '__main__':
