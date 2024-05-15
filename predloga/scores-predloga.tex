@@ -197,11 +197,12 @@ Podobno tematiko je že nekaj raziskovalcev objavilo v raznih člankih, zato bom
 
 Pri analizi potencialnih phishing \cite{rekouche2011early} strani je veliko različnih elementov, ki jih je potrebno pregledati in nato določiti, ali gre za zlonamerno stran. To lahko storimo s pomočjo umetnih nevralnih mrež \cite{Zou2009} in z globokim učenjem \cite{lecun2015deep}. Avtorji članka \cite{HAYNES2021127} so sprva želeli analizirati elektronska sporočila na mobilnih napravah s pomočjo globokih nevralnih mrež, vendar so rezultati bili podpovprečni. Zato so se odločili poskusiti implementirati analizo elektronskega naslova s pomočjo transformatorskih jezikovnih modelov \cite{9222960}. Avtorji so tako postavili svojo hipotezo, da bi taki modeli lahko povezali vsebino elektronskega naslova z vsebino strani in tako določili, ali je stran pristna ali ne.  Za dokaz svoje hipoteze so uporabili že obstoječa transformatorska modela, in sicer BERT \cite{devlin2018bert} in ELECTRA \cite{clark2020electra}. Izkazalo se je celo, da je predhodno učen javno dostopen model dosegel boljši rezultat kot model, ki je bil učen s pomočjo po meri ustvarjenega slovarja. Prednosti takega pristopa so, da je čas učenja zalo kratek, ni potrebno obdelati podatke pred analizo, je varneje, ker ni potrebno obiskati spletnih strani, ki so lahko nevarne in pa jih lahko uporabimo tudi na mobilnih napravah. 
 
-Za analizo elektronske pošte lahko pregledamo besedilo sporočila. Pri pregledu lahko preverjamo, če obstajajo vzorci, ki so značilni za lažna sporočila. V tem primeru bi govorili o sentimentu sporočila. Točno to so se odločili storiti avtorji v članku \cite{stone2007ebids}. Natačneje pa so preverili, če besedilo vsebuje koncepte manipulacije in jih poskusili pravilno določiti. To so storili z lastnim OntoSem projektom, ki so ga razvili v enem izmed laboratorijev Univerze v Marylandu. Čeprav izbran projekt ni premagal ostalih že obstoječih sistemov, je vseeno dosegel kar 75-\% stopnjo odkrivanja manipulativnih elektronskih sporočil s samo štirimi navodili detekcije. Uporabljen sistem bi lahko še izboljšali z uporabo več pravil in mogoče s tem izboljšali stopnjo odkrivanja. 
+Za analizo elektronske pošte lahko pregledamo besedilo sporočila. Pri pregledu lahko preverjamo, če obstajajo vzorci, ki so značilni za lažna sporočila. V tem primeru bi govorili o sentimentu sporočila. Točno to so se odločili storiti avtorji v članku \cite{stone2007ebids}. Natačneje pa so preverili, če besedilo vsebuje koncepte manipulacije in jih poskusili pravilno določiti. To so storili z lastnim OntoSem projektom, ki so ga razvili v enem izmed laboratorijev Univerze v Marylandu. Čeprav izbran projekt ni premagal ostalih že obstoječih sistemov, je vseeno dosegel kar 75 \% stopnjo odkrivanja manipulativnih elektronskih sporočil s samo štirimi navodili detekcije. Uporabljen sistem bi lahko še izboljšali z uporabo več pravil in mogoče s tem izboljšali stopnjo odkrivanja. 
 
-V primeru dobro izdelanih prevar je lahko težko klasificirati sporočilo po le eni značilnosti, zato lahko analiziramo vse komponente skupaj. Pregledamo lahko sporočilo, meta podatke in druge dele prevare. Avtorji dela \cite{mittal2022phishing} so to dosegli s posebnim ogrodjem, ki je sestavljeno iz več različnih modelov. Posamezni model lahko analizira določen del elektronskega sporočila in s pomočjo nevralne mreže določi, ali gre za pristno ali lažno komponento. To ogrodje se imenuje DARTH. Sestavljeno je iz več različnih nevralnih mrež, ki delujejo z različnimi modeli. Ko ogrodje razdeli elektronsko sporočilo na posamične dele, vsaka nevralna mreža oceni svoj del in pošlje rezultat analize v končno nevralno mrežo, ki deluje na principu ansambelskega učenja \cite{682375}. Na koncu je avtorjem uspelo doseči kar 98,99-\% stopnjo odkrivanja prevar in lažnih sporočil s tem ogrodjem. Učno in testno množico pa so ustvarili s pomočjo raznih virov, med drugim tudi s \emph{phishtank.com}.
+V primeru dobro izdelanih prevar je lahko težko klasificirati sporočilo po le eni značilnosti, zato lahko analiziramo vse komponente skupaj. Pregledamo lahko sporočilo, meta podatke in druge dele prevare. Avtorji dela \cite{mittal2022phishing} so to dosegli s posebnim ogrodjem, ki je sestavljeno iz več različnih modelov. Posamezni model lahko analizira določen del elektronskega sporočila in s pomočjo nevralne mreže določi, ali gre za pristno ali lažno komponento. To ogrodje se imenuje DARTH. Sestavljeno je iz več različnih nevralnih mrež, ki delujejo z različnimi modeli. Ko ogrodje razdeli elektronsko sporočilo na posamične dele, vsaka nevralna mreža oceni svoj del in pošlje rezultat analize v končno nevralno mrežo, ki deluje na principu ansambelskega učenja \cite{682375}. Na koncu je avtorjem uspelo doseči kar 98,99 \% stopnjo odkrivanja prevar in lažnih sporočil s tem ogrodjem. Učno in testno množico pa so ustvarili s pomočjo raznih virov, med drugim tudi s \emph{phishtank.com}.
 
 \section{Pridobivanje podatkov}
+Samo pridobivanje podatkov je bilo zelo težavno in je podatke za naše delo bilo težko pridobiti, saj se ti ves čas spreminjajo in zelo hitro razvijajo. Iskali smo jih v različnih javnih bazah in jih pridobivali na različne načine. Pridobili smo jih predvsem iz strani PhishTank-a in  Common Crawl, kjer smo podatke pridobili s pomočjo Python funkcije opisane kasneje.
 \subsection{Model BERT}
 Za obdelavo podatkov smo uporabili odprtokodni jezikovni model BERT (Bidirectional Encoder Representations from Transformers), ki ga je leta 2018 razvil Google. Temelji na arhitekturi Transformer, ki omogoča učinkovito obdelavo naravnega jezika. BERT omogoča branje v obe smeri (do BERT modela so jezikovni modeli obdelovali kontekst ali od leve proti desni ali obratno). To pomeni, da BERT razume besede v njihovem celotnem kontekstu, kar ga naredi zelo učinkovitega pri številnih nalogah, kot so razumevanje jezika, strojno prevajanje, odgovarjanje na vprašanja, analiza sentimenta in drugi jezikovni izzivi. Lahko prepozna, ali imata dva konteksta kakšno povezavo med sabo in logiko. BERT deluje na podlagi globokega učenja. Arhitektura BERT uporablja Transformerje, ki so vrsta nevronskih mrež, zgrajenih iz več plasti. Transformerji so znani po svoji sposobnosti učinkovite obdelave sekvenc podatkov, kot so nizi besed v jezikovnih nalogah. Transformer pregleda povezave med podano besedo in besedami okoli nje v povedi, kar omogoča boljše razumevanje konteksta. Za pravilno delovanje in učenje potrebuje model BERT učno in testno množico podatkov.
 
@@ -211,31 +212,6 @@ Za pridobivanje podatkov smo potrebovali URL povezave phishing strani in verodos
 Pridobivanje podatkov s strani PhishTank je bilo malo težje za izvesti. Python koda za pridobivanje podatkov se najprej poveže na Phistank stran. Nato določi URL, ki bo vseboval povezave do sumljivih URL-jev in povezane URL-je phishing strani. Za vsako sumljivo spletno stran preveri, ali je ta sploh dosegljiva. Nato izvleče ID in URL phishing strani iz HTML vsebine, ki je pridobljena iz določene strani PhishTank-a. Sledi glavna metoda 'scrape', ki izvaja celoten postopek pridobivanja sumljivih URL-jev. Obišče določeno število strani PhishTank-a (določeno s page\_range), izvleče ID-je sumljivih URL-jev in z njimi povezane phishing strani ter jih shrani v slovar phish\_url\_dict. Pridobljeni podatki so nato shranjeni v CSV datoteko. Vsak zapis v CSV vsebuje ID sumljivega URL-ja in povezavo do phishing strani.
 Pridobivanje podatkov s strani Common Crawl je bilo bolj enostavno za izvesti. Podatke smo pridobili s pomočjo Python funkcije 'extract\_urls\_from\_cdx\_files'. Funkcija najprej odpre indeksirano datoteko CDX in nato prebere vrstice ter razdeli te na dele glede na presledke. Glavni del, ki nas zanima, je tisti, ki je na indeksu 3 v delih. To je URL, ki ga želimo izvleči. Vsakih 1000 vrstic se URL doda v seznam, dokler ni dosežena omejitev.
 
-\begin{lstlisting}[language=Python, breaklines=false, xrightmargin=0.1\textwidth, basicstyle=\footnotesize]
-# EXTRACT COMMON CRAWL DATA
-def extract_urls_from_cdx_file(file_path, limit=100):
-    urls = []
-    line_count = 0
-    with open(file_path, 'r', encoding='utf-8') as f:
-        for line in f:
-            line = line.rstrip()  # Remove newline character
-            if not line:
-                continue
-            try:
-                parts = line.split(' ')
-	     # Extract the URL and remove the quotation 
-	     #marks and trailing comma
-                url = parts[3][1:-2]  
-                line_count += 1
-                if line_count % 1000 == 0:
-                    urls.append(url)
-                if len(urls) >= limit:
-                    break
-            except Exception as e:
-                print(f'Error processing line: {line}. Error: {e}')
-                continue
-    return urls
-\end{lstlisting}
 
 Ko smo imeli podatke, smo jih mogli urediti in dati v skupno datoteko. Obdelani podatki so vsebovali ID, številko, ki je opredelila, ali je stran verodostojna ali ne. Sledila je naključna črka (uporabili smo črko a), brez katere model ni deloval. Nato je sledil URL. 
 
@@ -243,7 +219,42 @@ Ko smo imeli podatke, smo jih mogli urediti in dati v skupno datoteko. Obdelani 
 Za učenje in klasifikacijo URL naslovov, rabimo nekatera orodja. Osnovni model BERT deluje na nekaterih starejših verzija raznih knjižnic ali jezikov. Ker gre za program napisan v Pythonu, je potrebno naložiti nekaj paketov. Za začetek rabimo pravilno verzijo jezika. Glede na uporabljene knjižnice v samem projektu smo uporabili Python 3.7.9. Čeprav sam model ne zahteva te različice jezika, jo pa zahtevajo knjižnice v projektu. Za konverzijo žetonov v učljivo množico podatkov uporabimo knjižnico Tensorflow. Ker gre za zastarele različice knjižnic in jezika smo vse skupaj izvedli v virtualnem okolju Python.
 
 \section{Učenje}
-Po pridobitvi podatkov, smo izvedli učenje. Učenje poteka s pomočjo TensorFlow knjižnice
+Po pridobitvi podatkov, smo izvedli učenje. Učenje poteka s pomočjo TensorFlow knjižnice. Od celotne množice je 80 \% je bilo uporabljene za učenje in preostalih 20 \% za testiranje. Od teh 20 \% za testiranje je bilo 25 \% testne množice uporabljene pri razvojnem testiranju. Trajanje učenja za različne oblike podatkovnih množic je predstavljeno v tabeli~\ref{tab:table1} . Učenje je potekalo preko procesorja in sicer na računalniku z Ryzen 9 5900x procesorjem in 64 GB RAM-a in v Windows okolju, kar pomeni da smo bili omejeni na procesor in nismo uporabljali CUDA in moči grafične kartice, katero bi lahko izkoristili, če bi bili na okolju Linux.
+
+\begin{table}
+    \centering
+    \caption{Trajanje učenja}
+    \label{tab:table1}
+    \begin{tabular}{cc}
+        	\toprule
+        	Oblika podatkovne množice&Čas učenja \\
+       	 \midrule
+        	Bert uncased & ? \\
+       	Bert cased &  ?\\
+	Bert multi cased & 2 uri 31 minut \\
+	Bert large uncased full masking  &  ?\\
+       	 \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{Rezultati}
+Po učenju smo še lahko opravili testiranje uspešnosti nad preostalo množico podatkov in smo prišli do rezultatov predstavljenih v tabeli~\ref{tab:table2}.
+
+\begin{table}
+    \centering
+    \caption{Rezultati natančnosti}
+    \label{tab:table2}
+    \begin{tabular}{ccc}
+        	\toprule
+        	Oblika podatkovne množice&Natančnost&Izguba\\
+       	 \midrule
+        	Bert uncased & 99,59 \% & 1,48 \%  \\
+       	Bert cased &  ? & ? \\
+	Bert multi cased & ? & ?  \\
+	Bert large uncased full masking  &  ? & ? \\
+       	 \bottomrule
+    \end{tabular}
+\end{table}
 
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{bibliografija}
