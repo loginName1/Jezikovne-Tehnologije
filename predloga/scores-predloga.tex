@@ -239,8 +239,11 @@ def extract_urls_from_cdx_file(file_path, limit=100):
 
 Ko smo imeli podatke, smo jih mogli urediti in dati v skupno datoteko. Obdelani podatki so vsebovali ID, številko, ki je opredelila, ali je stran verodostojna ali ne. Sledila je naključna črka (uporabili smo črko a), brez katere model ni deloval. Nato je sledil URL. 
 
+\section{Priprava okolja}
+Za učenje in klasifikacijo URL naslovov, rabimo nekatera orodja. Osnovni model BERT deluje na nekaterih starejših verzija raznih knjižnic ali jezikov. Ker gre za program napisan v Pythonu, je potrebno naložiti nekaj paketov. Za začetek rabimo pravilno verzijo jezika. Glede na uporabljene knjižnice v samem projektu smo uporabili Python 3.7.9. Čeprav sam model ne zahteva te različice jezika, jo pa zahtevajo knjižnice v projektu. Za konverzijo žetonov v učljivo množico podatkov uporabimo knjižnico Tensorflow. Ker gre za zastarele različice knjižnic in jezika smo vse skupaj izvedli v virtualnem okolju Python.
+
 \section{Učenje}
-Po pridobitvi podatkov, smo izvedli učenje.
+Po pridobitvi podatkov, smo izvedli učenje. Učenje poteka s pomočjo TensorFlow knjižnice
 
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{bibliografija}
