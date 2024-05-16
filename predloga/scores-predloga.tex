@@ -219,7 +219,7 @@ Ko smo imeli podatke, smo jih mogli urediti in dati v skupno datoteko. Obdelani 
 Za učenje in klasifikacijo URL naslovov, rabimo nekatera orodja. Osnovni model BERT deluje na nekaterih starejših verzija raznih knjižnic ali jezikov. Ker gre za program napisan v Pythonu, je potrebno naložiti nekaj paketov. Za začetek rabimo pravilno verzijo jezika. Glede na uporabljene knjižnice v samem projektu smo uporabili Python 3.7.9. Čeprav sam model ne zahteva te različice jezika, jo pa zahtevajo knjižnice v projektu. Za konverzijo žetonov v učljivo množico podatkov uporabimo knjižnico Tensorflow. Ker gre za zastarele različice knjižnic in jezika smo vse skupaj izvedli v virtualnem okolju Python.
 
 \section{Učenje}
-Po pridobitvi podatkov, smo izvedli učenje. Učenje poteka s pomočjo TensorFlow knjižnice. Od celotne množice je 80 \% je bilo uporabljene za učenje in preostalih 20 \% za testiranje. Od teh 20 \% za testiranje je bilo 25 \% testne množice uporabljene pri razvojnem testiranju. Trajanje učenja za različne oblike podatkovnih množic je predstavljeno v tabeli~\ref{tab:table1} . Učenje je potekalo preko procesorja in sicer na računalniku z Ryzen 9 5900x procesorjem in 64 GB RAM-a in v Windows okolju, kar pomeni da smo bili omejeni na procesor in nismo uporabljali CUDA in moči grafične kartice, katero bi lahko izkoristili, če bi bili na okolju Linux.
+Po pridobitvi podatkov, smo izvedli učenje. Učenje poteka s pomočjo TensorFlow knjižnice. Od celotne množice je 80 \% je bilo uporabljene za učenje in preostalih 20 \% za testiranje. Od teh 20 \% za testiranje je bilo 25 \% testne množice uporabljene pri razvojnem testiranju. Trajanje učenja za različne oblike podatkovnih množic je predstavljeno v tabeli~\ref{tab:table1} . Učenje je potekalo preko procesorja in sicer na računalniku z Ryzen 9 5900x procesorjem in 64 GB RAM-a in v Windows okolju, kar pomeni da smo bili omejeni na procesor in nismo uporabljali CUDA in moči grafične kartice, katero bi lahko izkoristili, če bi bili na okolju Linux. Učenje uncased in cased verzij BERT sta obe trajali enako časa in sicer 2 uri in 16 minut. Razlika med njima pa je da cased verzija razlikuje med besedami z velikimi črkami v primerjavi z besedami z malimi črkami, medtem ko pa uncased verzija ne razlikuje med njima. To pomeni da cased verzija bi besedi "english" in "English" zaznala kot različni, uncased verzija pa kot enaki besedi. BERT multi cased je prav tako cased kot prej omenjeni navadni BERT cased, le da je  ta prednaučen na 104-ih različnih največjih jezikih glede na Wikipedijo, ostali so pa samo na angleščini. Pri tem je učenje trajalo malo več in sicer 2 uri in 31 minut. BERT large uncased full masking je prav tako prednaučen samo na angleščini  in je uncased kar pomeni da ne razlikuje med velikimi in malimi črkami v besedi. Prav tako je večji kot navaden in uporablja drugačen način učenja kot ostali BERT modeli. Ta model se je učil veliko več časa saj je tudi model večji, učil pa se je 6 ur in 43 minut.
 
 \begin{table}
     \centering
@@ -229,16 +229,16 @@ Po pridobitvi podatkov, smo izvedli učenje. Učenje poteka s pomočjo TensorFlo
         	\toprule
         	Oblika podatkovne množice&Čas učenja \\
        	 \midrule
-        	Bert uncased & ? \\
-       	Bert cased &  ?\\
-	Bert multi cased & 2 uri 31 minut \\
-	Bert large uncased full masking  &  ?\\
+        	BERT uncased & 2 uri 16 minut \\
+       	BERT cased &  2 uri 16 minut\\
+	BERT multi cased & 2 uri 31 minut \\
+	BERT large uncased full masking  &  6 ur 43 minut\\
        	 \bottomrule
     \end{tabular}
 \end{table}
 
 \section{Rezultati}
-Po učenju smo še lahko opravili testiranje uspešnosti nad preostalo množico podatkov in smo prišli do rezultatov predstavljenih v tabeli~\ref{tab:table2}.
+Po učenju smo še lahko opravili testiranje uspešnosti nad preostalo množico podatkov in smo prišli do rezultatov predstavljenih v tabeli~\ref{tab:table2}. Večina modelov je zelo natančna pri testiranju rezutlatov in sicer vsi navadni BERT modeli imajo več kot 99,5 \% natančnost, večji BERT large uncased full masking model, ki pa je za razliko od ostalih naučen na drugačen način pa ima natančnost samo 50,42 \%.
 
 \begin{table}
     \centering
@@ -248,10 +248,10 @@ Po učenju smo še lahko opravili testiranje uspešnosti nad preostalo množico 
         	\toprule
         	Oblika podatkovne množice&Natančnost&Izguba\\
        	 \midrule
-        	Bert uncased & 99,59 \% & 1,48 \%  \\
-       	Bert cased &  ? & ? \\
-	Bert multi cased & ? & ?  \\
-	Bert large uncased full masking  &  ? & ? \\
+        	BERT uncased & 99,72 \% & 1,48 \%  \\
+       	BERT cased &  99,55 \% & ? \\
+	BERT multi cased & 99,83 \% & ?  \\
+	BERT large uncased full masking  &  50,42 \% & ? \\
        	 \bottomrule
     \end{tabular}
 \end{table}
