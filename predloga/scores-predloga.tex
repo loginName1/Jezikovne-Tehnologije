@@ -175,7 +175,7 @@
 %% The abstract is a short summary of the work to be presented in the
 %% article.
 \begin{abstract}
-   V modernem svetu se pojavlja čedalje več prevarantov, ki s pomočjo nepristnih spletnih strani kradejo podatke svojih žrtev in s temi podaki kradejo denar. Tehnološko bolj pismeni take prevare lahko zelo hitro identificirajo in jih ignorirajo, vendar pa niso vse žrtve take. Zato smo se odločili raziskati kako lahko z uporabo analize naravnega jezika ugotovimo ali je prejeto elektronsko sporočilo pristno ali prevara. To bomo storili s pomočjo jezikovnih modelov in nevralnih mrež. 
+V sodobnem svetu se pojavlja vse več prevarantov, ki s pomočjo lažnih spletnih strani kradejo podatke svojih žrtev in s temi podatki pridobivajo denar. Medtem ko tehnološko bolj pismeni posamezniki take prevare hitro prepoznajo in ignorirajo, vse žrtve nimajo takšnega znanja. Namen te raziskave je raziskati, kako lahko z uporabo analize naravnega jezika ugotovimo, ali je prejeto elektronsko sporočilo pristno ali prevara. Za ta namen bomo uporabili jezikovne modele in nevralne mreže, ki bodo analizirali vsebino sporočil in določili njihovo verodostojnost.
 \end{abstract}
 
 %%
@@ -190,10 +190,14 @@
 
 \section{Uvod}
 
-S hitrim razvojem računalniških tehnologij je prišel tudi hiter razvoj interneta, ki nam danes omogoča hitro in preprosto komunikacijo, predvajanje video vsebin, kupovanje raznih produktov v spletnih trgovinah, naročevanje hrane na dom in še veliko več. Vendar pa s takšno povezanostjo pridejo tudi negativne posledice velikokrat javno dostopnih podatkov. Nekateri posamezniki so ugotovili, da lahko s temi podatki pridejo tudi do zaslužka. Ne glede na to, kako previdni smo s svojimi podatki, se ti lahko vedno pojavijo v rokah novodobnih roparjev. Že elektronski naslov je dovolj, da dobimo vprašljivo sporočilo od naše banke ali dostavljalnega podjetja glede izgubljenega paketa, ki od nas zahteva prijavo na njihovi spletni strani, katere spletni naslov je prikladno dodan v sporočilu. Ti prevaranti velikorat izvajajo svoje prevare izven domovine njihovih žrtev, saj je to varneje za njih. Zato so sporočila v imenu uradnih ustanov prevedena iz njihovega maternega jezika. Tu pa se lahko pojavijo razne slovnične napake, ki jih nekatere žrtve spregledajo, ali pa niso niti pozorne na pravopis sporočila. Take napake velikokrat privedejo do izgube denarja ali česa hujšega. Da bi preprečili take napade, smo se odločili, da bomo poskusili izvesti analizo naravnega jezika sporočila in ugotoviti, ali je sporočilo pristno ali ne.
+S hitrim razvojem računalniških tehnologij je prišel tudi hiter razvoj interneta, ki nam danes omogoča hitro in preprosto komunikacijo, predvajanje video vsebin, nakupovanje izdelkov v spletnih trgovinah, naročevanje hrane na dom in še veliko več. Vendar pa takšna povezanost prinaša tudi negativne posledice, kot so javno dostopni podatki. Nekateri posamezniki so ugotovili, da lahko s temi podatki pridobijo finančno korist. Ne glede na to, kako previdni smo s svojimi podatki, se ti lahko vedno pojavijo v rokah novodobnih roparjev. 
+
+Že elektronski naslov je dovolj, da prejmemo vprašljivo sporočilo od naše banke ali dostavne službe glede izgubljenega paketa, ki zahteva prijavo na njihovi spletni strani, katere povezava je priročno vključena v sporočilu. Ti prevaranti pogosto izvajajo svoje prevare izven domovine svojih žrtev, saj je to za njih varnejše. Zato so sporočila v imenu uradnih ustanov prevedena iz njihovega maternega jezika, kar lahko vodi do slovničnih napak, ki jih nekatere žrtve spregledajo ali pa sploh ne opazijo. Takšne napake pogosto privedejo do izgube denarja ali še hujših posledic.
+
+Da bi preprečili takšne napade, smo se odločili, da bomo poskusili izvesti analizo naravnega jezika na prejetih sporočilih in ugotoviti, ali so sporočila pristna ali ne. Z uporabo jezikovnih modelov in nevralnih mrež bomo analizirali vsebino sporočil in ocenjevali njihovo verodostojnost. Cilj naše raziskave je razviti sistem, ki bo prispeval k večji zaščiti uporabnikov spleta pred spletnimi prevarami in zmanjšal število žrtev digitalnih goljufij.
 
 \section{Pregled obstoječe literature}
-Podobno tematiko je že nekaj raziskovalcev objavilo v raznih člankih, zato bomo pregledali nekaj virov, ki nam bodo pomagali pri pisanju lastnega članka.
+Podobno tematiko je že nekaj raziskovalcev obravnavalo v različnih člankih. V nadaljevanju bomo pregledali nekaj virov, ki nam bodo pomagali pri pisanju lastnega članka.
 
 Pri analizi potencialnih phishing \cite{rekouche2011early} strani je veliko različnih elementov, ki jih je potrebno pregledati in nato določiti, ali gre za zlonamerno stran. To lahko storimo s pomočjo umetnih nevralnih mrež \cite{Zou2009} in z globokim učenjem \cite{lecun2015deep}. Avtorji članka \cite{HAYNES2021127} so sprva želeli analizirati elektronska sporočila na mobilnih napravah s pomočjo globokih nevralnih mrež, vendar so rezultati bili podpovprečni. Zato so se odločili poskusiti implementirati analizo elektronskega naslova s pomočjo transformatorskih jezikovnih modelov \cite{9222960}. Avtorji so tako postavili svojo hipotezo, da bi taki modeli lahko povezali vsebino elektronskega naslova z vsebino strani in tako določili, ali je stran pristna ali ne.  Za dokaz svoje hipoteze so uporabili že obstoječa transformatorska modela, in sicer BERT \cite{devlin2018bert} in ELECTRA \cite{clark2020electra}. Izkazalo se je celo, da je predhodno učen javno dostopen model dosegel boljši rezultat kot model, ki je bil učen s pomočjo po meri ustvarjenega slovarja. Prednosti takega pristopa so, da je čas učenja zalo kratek, ni potrebno obdelati podatke pred analizo, je varneje, ker ni potrebno obiskati spletnih strani, ki so lahko nevarne in pa jih lahko uporabimo tudi na mobilnih napravah. 
 
@@ -202,16 +206,18 @@ Za analizo elektronske pošte lahko pregledamo besedilo sporočila. Pri pregledu
 V primeru dobro izdelanih prevar je lahko težko klasificirati sporočilo po le eni značilnosti, zato lahko analiziramo vse komponente skupaj. Pregledamo lahko sporočilo, meta podatke in druge dele prevare. Avtorji dela \cite{mittal2022phishing} so to dosegli s posebnim ogrodjem, ki je sestavljeno iz več različnih modelov. Posamezni model lahko analizira določen del elektronskega sporočila in s pomočjo nevralne mreže določi, ali gre za pristno ali lažno komponento. To ogrodje se imenuje DARTH. Sestavljeno je iz več različnih nevralnih mrež, ki delujejo z različnimi modeli. Ko ogrodje razdeli elektronsko sporočilo na posamične dele, vsaka nevralna mreža oceni svoj del in pošlje rezultat analize v končno nevralno mrežo, ki deluje na principu ansambelskega učenja \cite{682375}. Na koncu je avtorjem uspelo doseči kar 98,99 \% stopnjo odkrivanja prevar in lažnih sporočil s tem ogrodjem. Učno in testno množico pa so ustvarili s pomočjo raznih virov, med drugim tudi s \emph{phishtank.com}.
 
 \section{Pridobivanje podatkov}
-Samo pridobivanje podatkov je bilo zelo težavno in je podatke za naše delo bilo težko pridobiti, saj se ti ves čas spreminjajo in zelo hitro razvijajo. Iskali smo jih v različnih javnih bazah in jih pridobivali na različne načine. Pridobili smo jih predvsem iz strani PhishTank-a in  Common Crawl, kjer smo podatke pridobili s pomočjo Python funkcije opisane kasneje.
+Pridobivanje podatkov za našo raziskavo je bilo zelo zahtevno, saj se podatki ves čas spreminjajo in hitro razvijajo. Kljub temu smo uspeli pridobiti potrebne podatke iz različnih javnih baz ter z uporabo različnih metod. Pridobili smo jih predvsem iz strani PhishTank-a in Common Crawl, kjer smo podatke pridobili s pomočjo Python funkcije opisane kasneje.
 \subsection{Model BERT}
 Za obdelavo podatkov smo uporabili odprtokodni jezikovni model BERT (Bidirectional Encoder Representations from Transformers), ki ga je leta 2018 razvil Google. Temelji na arhitekturi Transformer, ki omogoča učinkovito obdelavo naravnega jezika. BERT omogoča branje v obe smeri (do BERT modela so jezikovni modeli obdelovali kontekst ali od leve proti desni ali obratno). To pomeni, da BERT razume besede v njihovem celotnem kontekstu, kar ga naredi zelo učinkovitega pri številnih nalogah, kot so razumevanje jezika, strojno prevajanje, odgovarjanje na vprašanja, analiza sentimenta in drugi jezikovni izzivi. Lahko prepozna, ali imata dva konteksta kakšno povezavo med sabo in logiko. BERT deluje na podlagi globokega učenja. Arhitektura BERT uporablja Transformerje, ki so vrsta nevronskih mrež, zgrajenih iz več plasti. Transformerji so znani po svoji sposobnosti učinkovite obdelave sekvenc podatkov, kot so nizi besed v jezikovnih nalogah. Transformer pregleda povezave med podano besedo in besedami okoli nje v povedi, kar omogoča boljše razumevanje konteksta. Za pravilno delovanje in učenje potrebuje model BERT učno in testno množico podatkov.
 
 \subsection{Priprava podatkov}
 Za naš eksperiment smo uporabili BERT base model \cite{turc2019}. BERT base model se nanaša na osnovno različico BERT modela, ki ima manjše število plasti in parametrov v primerjavi z drugimi variantami, kot je na primer BERT large model. BERT base model običajno vsebuje okoli 12 plasti Transformerjev. To lahko omeji zmogljivost modela pri reševanju kompleksnejših nalog, vendar je hkrati tudi manj zahteven za uporabo zaradi manjšega števila parametrov.
-Za pridobivanje podatkov smo potrebovali URL povezave phishing strani in verodostojne strani. URL povezave phishing strani smo pridobili iz PhishTank, verodostojne pa s strani Common Crawl.
-Pridobivanje podatkov s strani PhishTank je bilo malo težje za izvesti. Python koda za pridobivanje podatkov se najprej poveže na Phistank stran. Nato določi URL, ki bo vseboval povezave do sumljivih URL-jev in povezane URL-je phishing strani. Za vsako sumljivo spletno stran preveri, ali je ta sploh dosegljiva. Nato izvleče ID in URL phishing strani iz HTML vsebine, ki je pridobljena iz določene strani PhishTank-a. Sledi glavna metoda 'scrape', ki izvaja celoten postopek pridobivanja sumljivih URL-jev. Obišče določeno število strani PhishTank-a (določeno s page\_range), izvleče ID-je sumljivih URL-jev in z njimi povezane phishing strani ter jih shrani v slovar phish\_url\_dict. Pridobljeni podatki so nato shranjeni v CSV datoteko. Vsak zapis v CSV vsebuje ID sumljivega URL-ja in povezavo do phishing strani.
-Pridobivanje podatkov s strani Common Crawl je bilo bolj enostavno za izvesti. Podatke smo pridobili s pomočjo Python funkcije 'extract\_urls\_from\_cdx\_files'. Funkcija najprej odpre indeksirano datoteko CDX in nato prebere vrstice ter razdeli te na dele glede na presledke. Glavni del, ki nas zanima, je tisti, ki je na indeksu 3 v delih. To je URL, ki ga želimo izvleči. Vsakih 1000 vrstic se URL doda v seznam, dokler ni dosežena omejitev.
 
+Za pridobivanje podatkov smo potrebovali URL povezave phishing strani in verodostojne strani. URL povezave phishing strani smo pridobili iz PhishTank, verodostojne pa s strani Common Crawl.
+
+Pridobivanje podatkov s strani PhishTank je bilo malo težje za izvesti. Python koda za pridobivanje podatkov se najprej poveže na Phistank stran. Nato določi URL, ki bo vseboval povezave do sumljivih URL-jev in povezane URL-je phishing strani. Za vsako sumljivo spletno stran preveri, ali je ta sploh dosegljiva. Nato izvleče ID in URL phishing strani iz HTML vsebine, ki je pridobljena iz določene strani PhishTank-a. Sledi glavna metoda 'scrape', ki izvaja celoten postopek pridobivanja sumljivih URL-jev. Obišče določeno število strani PhishTank-a (določeno s page\_range), izvleče ID-je sumljivih URL-jev in z njimi povezane phishing strani ter jih shrani v slovar phish\_url\_dict. Pridobljeni podatki so nato shranjeni v CSV datoteko. Vsak zapis v CSV vsebuje ID sumljivega URL-ja in povezavo do phishing strani.
+
+Pridobivanje podatkov s strani Common Crawl je bilo bolj enostavno za izvesti. Podatke smo pridobili s pomočjo Python funkcije 'extract\_urls\_from\_cdx\_files'. Funkcija najprej odpre indeksirano datoteko CDX in nato prebere vrstice ter razdeli te na dele glede na presledke. Glavni del, ki nas zanima, je tisti, ki je na indeksu 3 v delih. To je URL, ki ga želimo izvleči. Vsakih 1000 vrstic se URL doda v seznam, dokler ni dosežena omejitev.
 
 Ko smo imeli podatke, smo jih mogli urediti in dati v skupno datoteko. Obdelani podatki so vsebovali ID, številko, ki je opredelila, ali je stran verodostojna ali ne. Sledila je naključna črka (uporabili smo črko a), brez katere model ni deloval. Nato je sledil URL. 
 
@@ -219,7 +225,19 @@ Ko smo imeli podatke, smo jih mogli urediti in dati v skupno datoteko. Obdelani 
 Za učenje in klasifikacijo URL naslovov, rabimo nekatera orodja. Osnovni model BERT deluje na nekaterih starejših verzija raznih knjižnic ali jezikov. Ker gre za program napisan v Pythonu, je potrebno naložiti nekaj paketov. Za začetek rabimo pravilno verzijo jezika. Glede na uporabljene knjižnice v samem projektu smo uporabili Python 3.7.9. Čeprav sam model ne zahteva te različice jezika, jo pa zahtevajo knjižnice v projektu. Za konverzijo žetonov v učljivo množico podatkov uporabimo knjižnico Tensorflow. Ker gre za zastarele različice knjižnic in jezika smo vse skupaj izvedli v virtualnem okolju Python.
 
 \section{Učenje}
-Po pridobitvi podatkov, smo izvedli učenje. Učenje poteka s pomočjo TensorFlow knjižnice. Od celotne množice je 80 \% je bilo uporabljene za učenje in preostalih 20 \% za testiranje. Od teh 20 \% za testiranje je bilo 25 \% testne množice uporabljene pri razvojnem testiranju. Trajanje učenja za različne oblike podatkovnih množic je predstavljeno v tabeli~\ref{tab:table1} . Učenje je potekalo preko procesorja in sicer na računalniku z Ryzen 9 5900x procesorjem in 64 GB RAM-a in v Windows okolju, kar pomeni da smo bili omejeni na procesor in nismo uporabljali CUDA in moči grafične kartice, katero bi lahko izkoristili, če bi bili na okolju Linux. Učenje uncased in cased verzij BERT sta obe trajali enako časa in sicer 2 uri in 16 minut. Razlika med njima pa je da cased verzija razlikuje med besedami z velikimi črkami v primerjavi z besedami z malimi črkami, medtem ko pa uncased verzija ne razlikuje med njima. To pomeni da cased verzija bi besedi "english" in "English" zaznala kot različni, uncased verzija pa kot enaki besedi. BERT multi cased je prav tako cased kot prej omenjeni navadni BERT cased, le da je  ta prednaučen na 104-ih različnih največjih jezikih glede na Wikipedijo, ostali so pa samo na angleščini. Pri tem je učenje trajalo malo več in sicer 2 uri in 31 minut. BERT large uncased full masking je prav tako prednaučen samo na angleščini  in je uncased kar pomeni da ne razlikuje med velikimi in malimi črkami v besedi. Prav tako je večji kot navaden in uporablja drugačen način učenja kot ostali BERT modeli. Ta model se je učil veliko več časa saj je tudi model večji, učil pa se je 6 ur in 43 minut.
+Po pridobitvi podatkov, smo izvedli učenje. Učenje poteka s pomočjo TensorFlow knjižnice. Od celotne množice je 80 \% je bilo uporabljene za učenje in preostalih 20 \% za testiranje. Od teh 20 \% za testiranje je bilo 25 \% testne množice uporabljene pri razvojnem testiranju. Trajanje učenja za različne oblike podatkovnih množic je predstavljeno v tabeli~\ref{tab:table1} . 
+
+Učenje je potekalo na računalniku z Ryzen 9 5900X procesorjem in 64 GB RAM-a v Windows okolju, kar pomeni, da smo bili omejeni na procesor in nismo uporabljali CUDA ter moči grafične kartice, kar bi bilo možno v Linux okolju. 
+
+Učenje uncased in cased verzij BERT je trajalo enako časa, in sicer 2 uri in 16 minut. Razlika med njima je, da cased verzija razlikuje med besedami z velikimi in malimi črkami, medtem ko uncased verzija tega ne počne. To pomeni, da bi cased verzija zaznala besedi "english" in "English" kot različni, uncased verzija pa kot enaki besedi.
+
+Različne verzije modela BERT
+\begin{itemize}
+\item BERT Base Uncased: Ta verzija ne razlikuje med velikimi in malimi črkami. Učenje je trajalo 2 uri in 16 minut.
+\item BERT Base Cased: Ta verzija razlikuje med velikimi in malimi črkami. Učenje je trajalo enako kot pri uncased verziji, torej 2 uri in 16 minut.
+\item BERT Multilingual Cased: Ta model je prednaučen na 104 največjih jezikih glede na Wikipedijo, medtem ko sta prejšnja dva modela prednaučena samo na angleščini. Učenje je trajalo nekoliko dlje, in sicer 2 uri in 31 minut.
+\item BERT Large Uncased Full Masking: Ta model je prav tako prednaučen samo na angleščini in ne razlikuje med velikimi in malimi črkami. Je večji od običajnega BERT modela in uporablja drugačen način učenja. Učenje tega modela je trajalo precej dlje, in sicer 6 ur in 43 minut.
+\end{itemize}
 
 \begin{table}
     \centering
@@ -237,21 +255,39 @@ Po pridobitvi podatkov, smo izvedli učenje. Učenje poteka s pomočjo TensorFlo
     \end{tabular}
 \end{table}
 
+Razlike med modeli:
+\begin{itemize}
+\item Uncased vs. Cased: Cased modeli razlikujejo med velikimi in malimi črkami, kar pomeni, da bodo zaznali "english" in "English" kot različni besedi. Uncased modeli tega ne počnejo in obravnavajo obe besedi kot enaki.
+\item Ta model je treniran na več jezikih, kar omogoča boljše prepoznavanje večjezičnih podatkov.
+\item Večji modeli, kot je BERT Large Uncased Full Masking, imajo več plasti in parametrov, kar omogoča globlje učenje, vendar to zahteva več časa za treniranje.
+\end{itemize}
+
+S tem smo zaključili postopek učenja in priprave različnih modelov BERT za klasifikacijo URL naslovov. Učenje je bilo izvedeno na procesorju, kar je omejilo časovno učinkovitost, vendar so rezultati kljub temu pokazali ustrezno delovanje različnih modelov.
+
 \section{Rezultati}
-Po učenju smo še lahko opravili testiranje uspešnosti nad preostalo množico podatkov in smo prišli do rezultatov predstavljenih v tabeli~\ref{tab:table2}. Večina modelov je zelo natančna pri testiranju rezutlatov in sicer vsi navadni BERT modeli imajo več kot 99,5 \% natančnost, večji BERT large uncased full masking model, ki pa je za razliko od ostalih naučen na drugačen način pa ima natančnost samo 50,42 \%.
+Po zaključku učenja smo izvedli testiranje uspešnosti nad preostalo množico podatkov. Rezultati testiranja so predstavljeni v tabeli~\ref{tab:table2}. 
+
+Večina modelov je dosegla zelo visoko natančnost, pri čemer so vsi osnovni BERT modeli dosegli več kot 99,5 \% natančnost. Vendar pa je večji BERT Large Uncased Full Masking model, ki je bil naučen na drugačen način, dosegel precej nižjo natančnost, in sicer le 50,42 \%.
+
+\section{Zaključek}
+Visoka natančnost osnovnih BERT modelov (Base Uncased, Base Cased, in Multilingual Cased) kaže na njihovo učinkovitost pri prepoznavanju phishing URL naslovov. Ti modeli so bili sposobni uspešno klasificirati večino testnih primerov kot phishing ali legitimne strani.
+
+Nasprotno pa je BERT Large Uncased Full Masking model pokazal slabšo učinkovitost, kar lahko pripišemo več dejavnikom. Ta model je večji in uporablja drugačen način učenja, kar je morda povzročilo prekomerno prilagajanje (overfitting) ali neustrezno posploševanje na našem naboru podatkov. To kaže, da večji modeli niso vedno boljši, še posebej če niso optimalno nastavljeni za specifično nalogo.
+
+Naši rezultati kažejo, da so osnovni BERT modeli zelo učinkoviti pri prepoznavanju phishing URL naslovov z visoko natančnostjo. Pomembno je tudi, da izbira pravega modela in način učenja bistveno vpliva na končno uspešnost.
 
 \begin{table}
     \centering
     \caption{Rezultati natančnosti}
     \label{tab:table2}
-    \begin{tabular}{ccc}
+    \begin{tabular}{cc}
         	\toprule
-        	Oblika podatkovne množice&Natančnost&Izguba\\
+        	Oblika podatkovne množice&Natančnost\\
        	 \midrule
-        	BERT uncased & 99,72 \% & 1,48 \%  \\
-       	BERT cased &  99,55 \% & ? \\
-	BERT multi cased & 99,83 \% & ?  \\
-	BERT large uncased full masking  &  50,42 \% & ? \\
+        	BERT uncased & 99,72 \% \\
+       	BERT cased &  99,55 \%  \\
+	BERT multi cased & 99,83 \% \\
+	BERT large uncased full masking  &  50,42 \% \\
        	 \bottomrule
     \end{tabular}
 \end{table}
