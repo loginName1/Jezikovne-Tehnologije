@@ -222,10 +222,10 @@ Pridobivanje podatkov s strani Common Crawl je bilo bolj enostavno za izvesti. P
 Ko smo imeli podatke, smo jih mogli urediti in dati v skupno datoteko. Obdelani podatki so vsebovali ID, številko, ki je opredelila, ali je stran verodostojna ali ne. Sledila je naključna črka (uporabili smo črko a), brez katere model ni deloval. Nato je sledil URL. 
 
 \section{Priprava okolja}
-Za učenje in klasifikacijo URL naslovov, rabimo nekatera orodja. Osnovni model BERT deluje na nekaterih starejših verzija raznih knjižnic ali jezikov. Ker gre za program napisan v Pythonu, je potrebno naložiti nekaj paketov. Za začetek rabimo pravilno verzijo jezika. Glede na uporabljene knjižnice v samem projektu smo uporabili Python 3.7.9. Čeprav sam model ne zahteva te različice jezika, jo pa zahtevajo knjižnice v projektu. Za konverzijo žetonov v učljivo množico podatkov uporabimo knjižnico Tensorflow. Ker gre za zastarele različice knjižnic in jezika smo vse skupaj izvedli v virtualnem okolju Python.
+Za učenje in klasifikacijo URL naslovov, rabimo nekatera orodja. Rabili bomo določene zunanje Python knjižnice, sam jezikovni model in program, ki bo s pomočjo modela klasificiral naše naslove. Program, ki za izbrani model BERT tokenizira podatke, nauči model kako jih klasificirati in jih nato klasificira, smo dobili na Googlovem BERT GitHub repozitoriju skupaj z modeli, ki smo jih uporabili. Z izbranim urejevalnikom paketov smo naložili zahtevane knjižnice in prešli na učenje.
 
 \section{Učenje}
-Po pridobitvi podatkov, smo izvedli učenje. Učenje poteka s pomočjo TensorFlow knjižnice. Od celotne množice je 80 \% je bilo uporabljene za učenje in preostalih 20 \% za testiranje. Od teh 20 \% za testiranje je bilo 25 \% testne množice uporabljene pri razvojnem testiranju. Trajanje učenja za različne oblike podatkovnih množic je predstavljeno v tabeli~\ref{tab:table1} . 
+Po urejanju podatkov in pripravi okolja, smo izvedli učenje. Učenje poteka s pomočjo TensorFlow knjižnice. Od celotne množice je 80 \% je bilo uporabljene za učenje in preostalih 20 \% za testiranje. Od teh 80 \% za učenje je bilo 25 \% množice uporabljene pri razvojnem testiranju. Trajanje učenja za različne modele je predstavljeno v tabeli~\ref{tab:table1} . 
 
 Učenje je potekalo na računalniku z Ryzen 9 5900X procesorjem in 64 GB RAM-a v Windows okolju, kar pomeni, da smo bili omejeni na procesor in nismo uporabljali CUDA ter moči grafične kartice, kar bi bilo možno v Linux okolju. 
 
